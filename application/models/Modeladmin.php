@@ -18,6 +18,14 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
+    public function cek_admin_exis($email){
+        $this->db->select('*');
+        $this->db->from('admin_user');
+        $this->db->where('email', $email);
+        $data["data"] = $this->db->get()->result_array();
+        return $data;
+    }
+
     public function tambah_admin($data){
         $data = $this->db->INSERT('admin_user', $data);
         return $data;

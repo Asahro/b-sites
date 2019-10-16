@@ -32,15 +32,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function view($file){
+		$data['file'] = "admin/".$file;
 		if($file == "logout"){
 			$this->session->sess_destroy();
 			redirect("admin/login");
-		}else if($file == "login"){
-			$this->load->view('admin/login');	
-		}else if($file == "kunci"){
-			$this->session->set_userdata('last_url', str_replace(base_url(),"",$_SERVER["HTTP_REFERER"]));
-        	$this->session->set_userdata('login', 0);
-			$this->load->view('admin/kunci');	
+		}else if($file == "login" || $file == "lupa-password" || $file == "login" || $file == "kunci"){
+			$this->load->view('admin/themplate-depan', $data);
 		}else{
 			$data['file'] = "admin/".$file;
 			$this->load->view('admin/themplate', $data);	
@@ -48,7 +45,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function cek_login(){
-		$login = $this->modellogin->check_login($_POST['kontak'], $_POST['password']);
+		$login = $this->modellogin->check_login($this->input->post('kontak'), $this->input->post('password'));
 		if ($login){
             $this->session->set_userdata('id', $login[0]['id']);
             $this->session->set_userdata('nama', $login[0]['nama']);
@@ -65,12 +62,21 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function cek_lupa_password(){
+		$status = $this->modeladmin->cek_admin_exis($this->input->post('kontak'));
+		if($status){
+
+		}else{
+			$hasil = $this->session->set_userdata("success", "Hapus data ".$this->input->post('nama')." berhasil");
+		}
+	}
+
 	public function buka_kunci(){
 		$kontak = $this->session->userdata('email');
 		if(!$kontak){
 			$kontak = $this->session->userdata('nomor_telepone');
 		}
-        $login = $this->modelkunci->buka_kunci($kontak, $_POST['password']);
+        $login = $this->modelkunci->buka_kunci($kontak, $this->input->post('password'));
 		if ($login){
             $this->session->set_userdata('login', 1);
 			redirect($this->session->userdata('last_url'));

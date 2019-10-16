@@ -16,10 +16,14 @@ $route['lupa-password'] = 'menu/lupa';
 $route['404_override'] = 'menu/error404';
 $route['translate_uri_dashes'] = FALSE;
 
+
+
+
 $route['admin'] = 'admin/index';
 $route['admin/buka-kunci'] = 'admin/buka_kunci';
 $route['admin/cek-login'] = 'admin/cek_login';
 $route['admin/simpan-gambar'] = 'admin/simpan_gambar';
+$route['admin/cek-lupa-password'] = 'admin/cek_lupa_password';
 $route['admin/upload-data-admin'] = 'admin/upload_data_admin';
 $route['admin/upload-menu-admin'] = 'admin/upload_menu_admin';
 $route['admin/inactive-menu-admin/(:any)'] = 'admin/inactive_menu_admin/$1';

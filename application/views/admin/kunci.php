@@ -1,18 +1,9 @@
 
-    <?php $this->load->view('admin/themplate/header'); ?>
-    <style type="text/css">
-        .mt-10{
-            margin-top: 8%;
-        }
-        .all{
-            height: 700px;
-        }
-        .checkbox.login-checkbox label {
-            padding-left: 20px;
-        }       
-    </style>
+<?php 
+    $this->session->set_userdata('last_url', str_replace(base_url(),"",$_SERVER["HTTP_REFERER"]));
+    $this->session->set_userdata('login', 0);
+?>
 
-<body>
     <div class="color-line"></div>
     <div class="container-fluid all">
         <div class="container-fluid">
@@ -42,5 +33,3 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
         </div>
     </div>
-
-    <?php $this->load->view('admin/themplate/footer'); ?>
