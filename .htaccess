@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Point all URI to codeigniter bootstrap except direct access to file or dir
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]

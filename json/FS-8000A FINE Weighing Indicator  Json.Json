@@ -1,0 +1,47 @@
+[
+    {
+      "Data1": "Model",
+      "Data2": "Input Sensivity",
+      "Data3": "Excitation Voltage",
+      "Data4": "Max Loadcell Input Voltage",
+      "Data5": "Input Impedance",
+      "Data6": "A/D Conversion",
+      "Data7": "Conversion Method",
+      "Data8": "Max Digits",
+      "Data9": "Display",
+      "Data10": "External Input",
+      "Data11": "External Output",
+      "Data12": "Keypad",
+      "Data13": "Power Voltage",
+      "Data14": "Temperature",
+      "Data15": "Dimension (mm)",
+      "Data16": "Interface",
+      "Data17": "Options1",
+      "Data18": "Options2",
+      "Data19": "Options3"
+      "Data19": "Options4",
+      "Data20": "Options5"
+    },
+    {
+      "Data1": "FS-8000A",
+      "Data2": "0.2 µ/D",
+      "Data3": "10VDC",
+      "Data4": "32 mV",
+      "Data5": "> 10 MO",
+      "Data6": "200,000 Count",
+      "Data7": "Dual - Slop (200 times/sec)",
+      "Data8": "\"1000000\"",
+      "Data9": "10mm VFD (7 digits)",
+      "Data10": "4",
+      "Data11": "6",
+      "Data12": "Numeric keypad & Function keys, CLR, SET, PRINT",
+      "Data13": "110/220VAC, 50/60Hz",
+      "Data14": " -10°C ~ 40°C",
+      "Data15": "193.6 x 98 x 166",
+      "Data16": "RS-232C",
+      "Data17": "BCD OUT",
+      "Data18": "Analog Out (0~10VDC)",
+      "Data19": "Analog Out (4~20mA)",
+      "Data20": "Centronics Parallel + Real-time Clock"
+    }
+  ]
