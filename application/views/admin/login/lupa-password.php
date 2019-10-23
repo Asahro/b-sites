@@ -2,13 +2,6 @@
 
     <div class="color-line"></div>
     <div class="container-fluid all">
-        <div class="alert alert-error alert-error-style1 alert-error-stylenone">
-            <button type="button" class="close error-op" data-dismiss="alert" aria-label="Close">
-                    <span class="icon-sc-cl" aria-hidden="true">×</span>
-                </button>
-            <i class="fa fa-check adminpro-checked-pro admin-check-sucess admin-check-pro-none" aria-hidden="true"></i>
-            <p class="message-alert-none"><strong>Success!</strong> Indicates a successful or positive action.</p>
-        </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
             <div class="col-md-4 col-md-4 col-sm-4 col-xs-12 mt-10">
