@@ -24,6 +24,7 @@
                             <span class="help-block small"></span>
                         </div>
                         <button class="btn btn-success btn-block loginbtn" onclick="checkemail()">Konfirmasi</button>
+                        <a class="btn btn-default btn-block" href="<?php echo base_url() ?>admin/login" >Login</a>
                     </div>
                 </div>
             </div>
