@@ -27,9 +27,16 @@
     function checkemail(){
         $.post("<?php echo base_url() ?>admin/cek-lupa-password", {email: $("#username").val()}, function(result){
             if(result){
+                setTimeout(function(){ 
+
+                    
+
+                }, 5000);
             }else{
                 setTimeout(function(){ 
-                    $('div.alert .close').parent().alert('close');        
+
+
+
                 }, 5000);
             }
         });

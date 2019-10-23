@@ -17,9 +17,18 @@ class Admin extends CI_Controller {
 		if($file == "hapus-admin"){
 			$file = './gambar/'.$this->input->post('jenis').'/'.$this->input->post('gambar');
 			unlink($file);
-			$login = $this->modeladmin->hapus_admin($id);
-			$hasil = $this->session->set_userdata("success", "Hapus data ".$this->input->post('nama')." berhasil");
-            return $hasil;
+			$hapus = $this->modeladmin->hapus_admin($id);
+
+			if($hapus){
+				$this->session->set_userdata('notif', 1);
+	            $this->session->set_userdata('type_notif', 'success');
+	            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." berhasil");
+			}else{
+				$this->session->set_userdata('notif', 1);
+	            $this->session->set_userdata('type_notif', 'error');
+	            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." gagal");
+			}
+            return $hapus;
 		}else{
 			$data['file'] = "admin/".$folder."/".$file;
 			$this->load->view('admin/themplate', $data);
@@ -58,6 +67,16 @@ class Admin extends CI_Controller {
             $this->session->set_userdata('nomor_telepone', $login[0]['nomor_telepone']);
             $this->session->set_userdata('role', $login[0]['role']);
             $this->session->set_userdata('login', 1);
+
+
+
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('image_notif', $login[0]['photo']);
+            $this->session->set_userdata('pesan_notif', "Selamat Datang ". $login[0]['nama']);
+
+
+
 			$menu = $this->modeladmin->ambil_menu($login[0]['role']);
             $this->session->set_userdata('menu', $menu);
 			redirect("admin/dashboard");
@@ -116,10 +135,18 @@ class Admin extends CI_Controller {
         );
         $result = $this->modeladmin->tambah_admin($data_insert);
         if($result){
-	        $this->session->set_userdata("success", "Tambah data berhasil, Calon admin akan menerima email undangan dan bisa membuat password");
+
+
+
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Mengundang ".$this->input->post('nama')." berhasil, Email undakan telah dikirim ke Email ".$this->input->post('email'));
+
 	        $this->sendmail($this->input->post('email'), $this->input->post('nama'));
         }else{
-            $this->session->set_userdata("error", "Tambah User Gagal");            
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'error');
+            $this->session->set_userdata('pesan_notif', "Mengundang ".$this->input->post('nama')." Harap Ulangi Proses Penambahan ");
         }
         redirect('admin/daftar-admin');
 	}
@@ -137,9 +164,13 @@ class Admin extends CI_Controller {
 		$menu = $this->modeladmin->ambil_menu($this->session->userdata('role'));
         $this->session->set_userdata('menu', $menu);
         if($result){
-        	$this->session->set_userdata("success", "Tambah Menu Berhasil");
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah menu berhasil. Menu ". $data_insert['title']. " berhasil ditambahkan.");
         }else{
-            $this->session->set_userdata("error", "Tambah Menu Gagal");            	
+        	$this->session->set_userdata('error', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah menu gagal. Menu ". $data_insert['title']. " gagal ditambahkan.");
         }
         redirect('admin/developer/menu');
         print_r($status);

@@ -65,44 +65,20 @@
 
 <script type="text/javascript">
     
-    <?php if($this->session->userdata('selamat datang')){ ?>
-        Lobibox.notify('success', {
-            showClass: 'fadeInDown',
-            hideClass: 'fadeUpDown',
-            delay: 15000,
-            sound: false,
-            title: 'Login Sukses',
-            position: 'top right',
-            img: '<?php echo base_url() ?>/gambar/admin/<?php echo $this->session->userdata('photo'); ?>',
-            msg: '<?php echo $this->session->userdata('selamat datang'); 
-                             $this->session->unset_userdata('selamat datang'); ?>'
-        });
-    <?php } ?>
-
-    <?php if($this->session->userdata('error')){ ?>
-       Lobibox.notify('error', {
+    <?php if($this->session->userdata('notif')){ ?>
+       Lobibox.notify('<?php echo $this->session->userdata('type_notif');?>', {
             showClass: 'fadeInDown',
             hideClass: 'fadeUpDown',
             sound: false,
             delay: 15000,
-            title: 'Error',
+            title: '<?php echo $this->session->userdata('type_notif');?>',
+            <?php if ($this->session->userdata('image_notif') != ""){ ?>
+                img: '<?php echo base_url() ?>/gambar/admin/<?php echo $this->session->userdata('image_notif'); ?>',
+            <?php } ?>
             position: 'top right',
-            msg: '<?php echo $this->session->userdata('error');
-                             $this->session->unset_userdata('error');
-                     ?>'
-        });
-    <?php } ?>
-
-    <?php if($this->session->userdata('success')){ ?>
-       Lobibox.notify('success', {
-            showClass: 'fadeInDown',
-            hideClass: 'fadeUpDown',
-            sound: false,
-            delay: 15000,
-            title: 'Success',
-            position: 'top right',
-            msg: '<?php echo $this->session->userdata('success');
-                             $this->session->unset_userdata('success');
+            msg: '<?php echo $this->session->userdata('pesan_notif');
+                             $this->session->unset_userdata('notif');
+                             $this->session->unset_userdata('image_notif');
                      ?>'
         });
     <?php } ?>
