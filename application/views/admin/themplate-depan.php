@@ -14,6 +14,4 @@
 
 
 	<?php $this->load->view($file); ?>
-
-	
     <?php $this->load->view('admin/themplate/footer'); ?>

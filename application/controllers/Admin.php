@@ -27,8 +27,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function views($folder, $file){
-		$data['file'] = "admin/".$folder."/".$file;
-		$this->load->view('admin/themplate', $data);	
+		$data['file'] = "admin/".$folder."/".$file;	
+		if($folder == "login"){
+			$this->load->view('admin/themplate-depan', $data);
+		}else if($file == "login" || $file == "kunci"){
+			$this->load->view('admin/themplate', $data);
+		}
 	}
 
 	public function view($file){
@@ -36,7 +40,7 @@ class Admin extends CI_Controller {
 		if($file == "logout"){
 			$this->session->sess_destroy();
 			redirect("admin/login");
-		}else if($file == "login" || $file == "lupa-password" || $file == "login" || $file == "kunci"){
+		}else if($file == "login" || $file == "kunci"){
 			$this->load->view('admin/themplate-depan', $data);
 		}else{
 			$data['file'] = "admin/".$file;

@@ -27,7 +27,7 @@
                                 </label>
                             </div>
                             <button class="btn btn-success btn-block loginbtn">Login</button>
-                            <a class="btn btn-default btn-block" href="<?php echo base_url() ?>admin/lupa-password" >Lupa Password</a>
+                            <a class="btn btn-default btn-block" href="<?php echo base_url() ?>admin/login/lupa-password" >Lupa Password</a>
                         </form>
                     </div>
                 </div>
