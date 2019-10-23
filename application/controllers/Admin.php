@@ -118,7 +118,7 @@ class Admin extends CI_Controller {
             $this->session->set_userdata('type_notif', 'success');
             $this->session->set_userdata('pesan_notif', "Mengundang ".$this->input->post('nama')." berhasil, Email undakan telah dikirim ke Email ".$this->input->post('email'));
 
-            
+
 	        $this->sendmail($this->input->post('email'), $this->input->post('nama'));
         }else{
             $this->session->set_userdata('notif', 1);
@@ -165,7 +165,7 @@ class Admin extends CI_Controller {
         $result = $this->modeladmin->active_menu($id);
 		$menu = $this->modeladmin->ambil_menu($this->session->userdata('role'));
 		$this->session->set_userdata('adminmenu', "in");
-        $this->session->set_userdata('menu', $menu);
+        // $this->session->set_userdata('menu', $menu);
         redirect('admin/developer/menu');
 	}
 
@@ -177,11 +177,13 @@ class Admin extends CI_Controller {
 
 	public function sendmail($email){
         // $data['greating'] = "Undangan Admin";
-        $data = "email anda : ".$email." \n telah diundangan untuk menjadi admin di ".base_url().". untuk melengkapi proses berikutnya silahkan tekan tombol di bawah ini. \n \n \n bila anda tidak merasa memeliki hubungan dengan ".base_url()." harap abaikan email ini.";
-        // $data = $this->load->view('email-template', $data, true);
+        $parse = parse_url($url);
+        $domain =  $parse['host']; //
+        $data = "email anda : ".$email." \n telah diundangan untuk menjadi admin di ".base_url().". untuk melengkapi proses berikutnya silahkan tekan tombol di bawah ini. \n \n \n bila anda tidak merasa memeliki hubungan dengan <a href=\"".base_url()."\">".$domain."</a> harap abaikan email ini.";
+        $data = $this->load->view('email/themplate', $data, true);
         $this->load->library('email');
         $this->config->load('email', TRUE);
-        $sender = $this->config->item('smtp_user', 'email');
+        $sender = $this->config->item('smtp_user', 'websmaster');
         $this->email->from($this->session->set_userdata('nama', $login[0]['nama']), 'Admin '.base_url());
         $this->email->to($email);
         $this->email->subject('Undangan Sebagai Admin');
