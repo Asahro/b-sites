@@ -18,16 +18,6 @@ class Admin extends CI_Controller {
 			$file = './gambar/'.$this->input->post('jenis').'/'.$this->input->post('gambar');
 			unlink($file);
 			$hapus = $this->modeladmin->hapus_admin($id);
-
-			if($hapus){
-				$this->session->set_userdata('notif', 1);
-	            $this->session->set_userdata('type_notif', 'success');
-	            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." berhasil");
-			}else{
-				$this->session->set_userdata('notif', 1);
-	            $this->session->set_userdata('type_notif', 'error');
-	            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." gagal");
-			}
             return $hapus;
 		}else{
 			$data['file'] = "admin/".$folder."/".$file;

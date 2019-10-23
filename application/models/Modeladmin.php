@@ -33,7 +33,18 @@ class Modeladmin extends CI_Model{
 
     public function hapus_admin($id){
         $this->db->where('id', $id);
-        $data = $this->db->delete('admin_user');
+        $hapus = $this->db->delete('admin_user');
+        if($hapus){
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('title_notif', 'Berhasil Menghapus');
+            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." berhasil");
+        }else{
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'error');
+            $this->session->set_userdata('title_notif', 'Gagal Menghapus');
+            $this->session->set_userdata('pesan_notif', "Hapus admin ".$this->input->post('nama')." gagal");
+        }
         return $data;
     }
 
@@ -176,12 +187,14 @@ class Modeladmin extends CI_Model{
             if ($password == $data[0]['password']){ // sistem hash belum jadi
                 $this->session->set_userdata('notif', 1);
                 $this->session->set_userdata('type_notif', 'success');
+                $this->session->set_userdata('title_notif', 'Login Berhasil');
                 $this->session->set_userdata('image_notif', $data[0]['photo']);
                 $this->session->set_userdata('pesan_notif', "Selamat Datang ". $data[0]['nama']);
                 return $data;
             }else{
                 $this->session->set_userdata('notif', 1);
                 $this->session->set_userdata('type_notif', 'error');
+                $this->session->set_userdata('title_notif', 'Login Gagal');
                 $this->session->set_userdata('pesan_notif', "Email dan Password tidak sesuai. Harap cek kembali");
                 return $data;
             }
@@ -189,6 +202,7 @@ class Modeladmin extends CI_Model{
 
         $this->session->set_userdata('notif', 1);
         $this->session->set_userdata('type_notif', 'error');
+        $this->session->set_userdata('title_notif', 'Login Gagal');
         $this->session->set_userdata('pesan_notif', "Email Tidak Ditemukan, Pastikan penulisan benar atau jika belum memiliki akun dapat melakukan pendaftaran");
         return $data;
     }

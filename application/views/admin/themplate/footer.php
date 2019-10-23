@@ -71,7 +71,7 @@
             hideClass: 'fadeUpDown',
             sound: false,
             delay: 15000,
-            title: '<?php echo $this->session->userdata('type_notif');?>',
+            title: '<?php echo $this->session->userdata('title_notif');?>',
             <?php if ($this->session->userdata('image_notif') != ""){ ?>
                 img: '<?php echo base_url() ?>/gambar/admin/<?php echo $this->session->userdata('image_notif'); ?>',
             <?php } ?>
