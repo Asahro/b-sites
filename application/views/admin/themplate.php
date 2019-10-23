@@ -21,7 +21,7 @@
 
 
 
-<?php if($file == "admin/admin/daftar-admin") { ?>
+<?php if($file == "admin/daftar-admin") { ?>
     <script type="text/javascript">
     var qsRegex;
 

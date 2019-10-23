@@ -27,9 +27,9 @@ class Admin extends CI_Controller {
 
 	public function views($folder, $file){
 		$data['file'] = "admin/".$folder."/".$file;	
-		if($folder == "login"){
+		if($file == "login" || $file == "kunci"){
 			$this->load->view('admin/themplate-depan', $data);
-		}else if($file == "login" || $file == "kunci"){
+		}else{
 			$this->load->view('admin/themplate', $data);
 		}
 	}
