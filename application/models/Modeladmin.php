@@ -196,7 +196,7 @@ class Modeladmin extends CI_Model{
                 $this->session->set_userdata('type_notif', 'error');
                 $this->session->set_userdata('title_notif', 'Login Gagal');
                 $this->session->set_userdata('pesan_notif', "Email dan Password tidak sesuai. Harap cek kembali");
-                return $data;
+                return false;
             }
         }
 
@@ -204,7 +204,7 @@ class Modeladmin extends CI_Model{
         $this->session->set_userdata('type_notif', 'error');
         $this->session->set_userdata('title_notif', 'Login Gagal');
         $this->session->set_userdata('pesan_notif', "Email Tidak Ditemukan, Pastikan penulisan benar atau jika belum memiliki akun dapat melakukan pendaftaran");
-        return $data;
+        return false;
     }
 
     public function lupa_password($kontak){

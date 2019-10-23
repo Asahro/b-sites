@@ -83,7 +83,6 @@
         });
     <?php } ?>
 
-
     //     Lobibox.notify('error', {
     //         position: 'top right',
     //         delay: 15000,
