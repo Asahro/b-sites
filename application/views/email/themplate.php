@@ -48,7 +48,7 @@ Advertising templates, free Newsletter" />
 			}
 			
 			table.ban{
-			background: url(images/banner.jpg);
+			background: url(<?php echo base_url() ?>eassets/images/banner.jpg);
 				background-size: cover;
 				height: 342px!important;
 			}
@@ -202,7 +202,7 @@ Advertising templates, free Newsletter" />
 					height: 20px!important;
 				}
 			table.ban2 {
-				background: url(images/bottom.jpg);
+				background: url(<?php echo base_url() ?>eassets/images/bottom.jpg);
 				background-size: cover;
 				height:280px!important;
 			}
@@ -335,7 +335,7 @@ Advertising templates, free Newsletter" />
 					height: 20px!important;
 				}
 			table.ban2 {
-				background: url(images/bottom.jpg);
+				background: url(<?php echo base_url() ?>eassets/images/bottom.jpg);
 				background-size: cover;
 				height:280px!important;
 			}
@@ -414,7 +414,7 @@ Advertising templates, free Newsletter" />
 				width:300px!important;
 			}
 			table.ban2 {
-				background: url(images/bottom.jpg);
+				background: url(<?php echo base_url() ?>eassets/images/bottom.jpg);
 				background-size: cover;
 				height:280px!important;
 			}
@@ -489,7 +489,7 @@ Advertising templates, free Newsletter" />
 				font-size: 1.7em!important;
 			}
 			table.ban2 {
-					background: url(images/bottom.jpg);
+					background: url(<?php echo base_url() ?>eassets/images/bottom.jpg);
 					background-size: cover;
 					height: 230px!important;
 				}
@@ -575,7 +575,7 @@ Advertising templates, free Newsletter" />
 											<!-- banner -->
 						<tr>
 							<td>
-								<table class="ban" width="100%" border="0" align="left" cellpadding="0" cellspacing="0" bgcolor="FFFFFF" style="background:url(images/banner.jpg); background-size:cover;" height="450">
+								<table class="ban" width="100%" border="0" align="left" cellpadding="0" cellspacing="0" bgcolor="FFFFFF" style="background:url(<?php echo base_url() ?>eassets/images/banner.jpg); background-size:cover;" height="450">
 									<tbody>
 									
 								  <!--head_part-->
