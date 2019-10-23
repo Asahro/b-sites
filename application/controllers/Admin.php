@@ -58,7 +58,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function cek_login(){
-		$login = $this->modellogin->check_login($this->input->post('kontak'), $this->input->post('password'));
+		$login = $this->modeladmin->check_login($this->input->post('kontak'), $this->input->post('password'));
 		if ($login){
             $this->session->set_userdata('id', $login[0]['id']);
             $this->session->set_userdata('nama', $login[0]['nama']);
@@ -67,22 +67,11 @@ class Admin extends CI_Controller {
             $this->session->set_userdata('nomor_telepone', $login[0]['nomor_telepone']);
             $this->session->set_userdata('role', $login[0]['role']);
             $this->session->set_userdata('login', 1);
-
-
-
-            $this->session->set_userdata('notif', 1);
-            $this->session->set_userdata('type_notif', 'success');
-            $this->session->set_userdata('image_notif', $login[0]['photo']);
-            $this->session->set_userdata('pesan_notif', "Selamat Datang ". $login[0]['nama']);
-
-
-
 			$menu = $this->modeladmin->ambil_menu($login[0]['role']);
             $this->session->set_userdata('menu', $menu);
 			redirect("admin/dashboard");
-		}else{
-			redirect("admin");
-		}
+		}			
+		redirect("admin");
 	}
 
 	public function cek_lupa_password(){
@@ -135,9 +124,6 @@ class Admin extends CI_Controller {
         );
         $result = $this->modeladmin->tambah_admin($data_insert);
         if($result){
-
-
-
             $this->session->set_userdata('notif', 1);
             $this->session->set_userdata('type_notif', 'success');
             $this->session->set_userdata('pesan_notif', "Mengundang ".$this->input->post('nama')." berhasil, Email undakan telah dikirim ke Email ".$this->input->post('email'));

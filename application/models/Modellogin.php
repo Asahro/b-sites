@@ -11,63 +11,7 @@ class Modellogin extends CI_Model{
         return $data;
     }
 
-    //------------------------------------------------------------------------------------------------------ Deret Admin
-    public function check_login($kontak,$password){
-        $this->db->select('*');
-        $this->db->from('admin_user');
 
-        if (filter_var($kontak, FILTER_VALIDATE_EMAIL)){
-            $this->db->where('email', $kontak);
-        }else{
-            $this->db->where('nomor_telepone', $kontak);
-        }
-
-        $data = $this->db->get()->result_array();
-        if ($data){
-            if ($password == $data[0]['password']){ // sistem hash belum jadi
-                    $this->session->set_userdata('selamat datang', "Selamat datang ".$data[0]['nama'].".");
-                    return $data;
-            }else{
-                $this->session->set_userdata('error', "Password Salah, Pastikan penulisan benar atau jika lupa dapat menggunakan buka password");
-                return false;
-            }
-        }
-
-        $this->session->set_userdata('error', "Email Tidak Ditemukan, Pastikan penulisan benar atau jika belum memiliki akun dapat melakukan pendaftaran");
-        return false;
-    }
-
-    public function lupa_password($kontak){
-        $this->db->select('*');
-        $this->db->from('admin_user');
-        if (filter_var($kontak, FILTER_VALIDATE_EMAIL)){
-            $this->db->where('email', $kontak);
-            $data = $this->db->get()->result_array();
-            if ($data){
-                $this->session->set_flashdata('success', "Silahkan Periksa Email Anda. Jika tidak ditemukan periksa FOLDER SPAM");
-                // helper email
-                return 1;
-            }
-        }else{
-            $this->db->where('nomor', $kontak);
-            $data = $this->db->get()->result_array();
-            if ($data){
-                    //helper sms
-                    $this->session->set_flashdata('success', "SMS Verifikasi Telah Dikirim");
-                    return 2;                    
-            }            
-        }
-        $this->session->set_flashdata('error', "Nomor Handphone Tidak Ditemukan, \n Pastikan penulisan benar atau jika belum memiliki akun dapat melakukan pendaftaran");
-        return false;
-    }
-
-    public function change_password($newpassword){
-        $data = array(
-            "password" => create_hash($newpassword),
-        );
-        $this->db->where('email', "saya@ahmadsahro.info");
-        return($this->db->UPDATE('admin_user', $data));
-    }
 
 
     //-------------------------------------------------------------------------------- Deret User
