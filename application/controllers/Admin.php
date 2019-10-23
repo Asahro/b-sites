@@ -65,9 +65,9 @@ class Admin extends CI_Controller {
 	public function cek_lupa_password(){
 		$status = $this->modeladmin->cek_admin_exis($this->input->post('kontak'));
 		if($status){
-
+			return true;
 		}else{
-			$hasil = $this->session->set_userdata("success", "Hapus data ".$this->input->post('nama')." berhasil");
+			return false;
 		}
 	}
 
