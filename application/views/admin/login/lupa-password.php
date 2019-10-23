@@ -1,5 +1,3 @@
-
-
     <div class="color-line"></div>
     <div class="container-fluid all">
         <div class="row">
