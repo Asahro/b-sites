@@ -14,6 +14,12 @@ class Menu extends CI_Controller {
         $this->session->set_userdata('link_google', $this->google->loginURL());
     }
 
+
+    public function email_view(){
+    	$this->load->view('email/themplate');	
+    }
+
+
 	public function index(){
 		$this->load->view('web/home');	
 		// $this->load->view('wedding/home');	

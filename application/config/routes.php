@@ -36,6 +36,8 @@ $route['admin/(:any)/(:any)/(:any)'] = 'admin/viewss/$1/$2/$3';
 $route['admin/(:any)/(:any)/(:any)/(:any)'] = 'admin/viewsss/$1/$2/$3/$4';
 
 
+$route['email'] = 'menu/email_view';
+
 
 
 

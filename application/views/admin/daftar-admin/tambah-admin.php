@@ -224,13 +224,12 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script type="text/javascript">
-    $(document).ready( function() {       
+    $(document).ready( function() {
         $(document).on('change', '.btn-file :file', function() {
             var input = $(this),
                 label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
             input.trigger('fileselect', [label]);
         });
-
         $('.btn-file :file').on('fileselect', function(event, label) {
             $('#cropit').modal('show');            
             var input = $(this).parents('.input-group').find(':text'),
@@ -241,44 +240,6 @@
                 if( log ) alert(log);
             }
         });
-
-
-        // function readURL(input) {
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-                
-        //         reader.onload = function (e) {
-        //             $('#img-upload').attr('src', e.target.result);
-        //         }
-                
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // }
-
-        // $("#imgInp").change(function(){
-        //     readURL(this);
-        // });     
-
-      // $(function() {
-      //   $('.image-editor').cropit({
-      //     imageState: {
-      //       src: 'http://lorempixel.com/500/400/',
-      //     },
-      //   });
-
-      //   $('.rotate-cw').click(function() {
-      //     $('.image-editor').cropit('rotateCW');
-      //   });
-      //   $('.rotate-ccw').click(function() {
-      //     $('.image-editor').cropit('rotateCCW');
-      //   });
-
-      //   $('.export').click(function() {
-      //     var imageData = $('.image-editor').cropit('export');
-      //     window.open(imageData);
-      //   });
-      // });
-
     });
 
 

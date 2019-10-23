@@ -172,7 +172,6 @@ class Modeladmin extends CI_Model{
     }
 
 
-
     //------------------------------------------------------------------------------------------------------ Login Admin Proses
     public function check_login($kontak,$password){
         $this->db->select('*');
@@ -199,7 +198,6 @@ class Modeladmin extends CI_Model{
                 return false;
             }
         }
-
         $this->session->set_userdata('notif', 1);
         $this->session->set_userdata('type_notif', 'error');
         $this->session->set_userdata('title_notif', 'Login Gagal');
@@ -207,6 +205,7 @@ class Modeladmin extends CI_Model{
         return false;
     }
 
+    
     public function lupa_password($kontak){
         $this->db->select('*');
         $this->db->from('admin_user');

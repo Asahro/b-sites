@@ -118,6 +118,7 @@ class Admin extends CI_Controller {
             $this->session->set_userdata('type_notif', 'success');
             $this->session->set_userdata('pesan_notif', "Mengundang ".$this->input->post('nama')." berhasil, Email undakan telah dikirim ke Email ".$this->input->post('email'));
 
+            
 	        $this->sendmail($this->input->post('email'), $this->input->post('nama'));
         }else{
             $this->session->set_userdata('notif', 1);
