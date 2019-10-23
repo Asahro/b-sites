@@ -299,7 +299,7 @@
         $('.export').click(function() {
           var imageData = $('.image-editor').cropit('export');
           $.post( "<?php echo(base_url())?>admin/simpan-gambar", { jenis: "admin", gambar: imageData, gambarsebelumnya : $('#idphoto').val() }, function( data ) { 
-            $('#img-upload').attr('src', "http://localhost/tokoonline/gambar/admin/" + data );
+            $('#img-upload').attr('src', "<?php echo base_url() ?>gambar/admin/" + data );
             $('#idphoto').val(data);
             $('#cropit').modal('hide');            
           });
