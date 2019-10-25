@@ -13,13 +13,17 @@
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="alert-icon shadow-reset wrap-alert-b">
-
-
                             <div class="alert-title">
                                 <h2>Home Page</h2>
                                 <p>Sesuaikan Tampilan Home</p>
                             </div>
-
+                            <div class="btn btn-primary col-xs-3 col-sm-3 col-md-3 ml-3" onclick="tambahmenuadmin()">Tambah Menu Admin</div>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#adminmenu" class="" aria-expanded="true">
+                                <div class="col-xs-8 col-sm-8 col-md-8">
+                                    <h2 class="panel-title float-left">Admin Menu</h2>
+                                    <p class="float-left">Tambah, Hapus, Dan Edit Menu Serta Urutannya</p>
+                                </div>
+                            </a>                            
 
                             <iframe src="<?php echo base_url() ?>/iframe/headbar" class="col-12 b-none" style="height: 150px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/slider" class="col-12 b-none" style="height: 631px;"></iframe>
