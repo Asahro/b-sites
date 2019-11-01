@@ -73,15 +73,6 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
-    public function ambil_menu_menu(){
-        $this->db->select('*');
-        $this->db->from("admin_menu");
-        $this->db->where('id_parent', 0);
-        $this->db->order_by('urutan', 'asc');
-        $data = $this->db->get()->result_array();
-        return $data;
-    }
-
     public function ambil_submenu($id_menu){
         $this->db->select('*');
         $this->db->from("admin_menu");
@@ -105,8 +96,89 @@ class Modeladmin extends CI_Model{
         // return $data
     }
 
+    //----------------------------------------------------------------------- Proses CRUD semua menu
+    public function ambil_menu_all($tipe_menu){
+        $this->db->select('*');
+        $this->db->from($tipe_menu);
+        $this->db->where('id_parent', 0);
+        $this->db->order_by('urutan', 'asc');
+        $data = $this->db->get()->result_array();
+        return $data;
+    }
 
-    public function ambil_submenu_menu($id_menu){
+    public function ambil_submenu_all($id_menu, $tipe_menu){
+        $this->db->select('*');
+        $this->db->from($tipe_menu);
+        $this->db->where('id_parent', $id_menu);
+        $this->db->order_by('urutan', 'asc');
+        $data = $this->db->get()->result_array();
+        return $data;
+    }
+
+    public function tambah_menu_all($data_insert, $parent, $urutan, $tipe_menu){
+        $this->db->set('urutan', 'urutan+1', FALSE);
+        $this->db->where('id_parent =', $parent);
+        $this->db->where('urutan >=', $urutan);
+        $this->db->update($tipe_menu);
+        $data = $this->db->INSERT($tipe_menu, $data_insert);
+        $all_lower = str_replace(" ","_",$tipe_menu);
+        $first_upercase = ucfirst($all_lower);
+        if($data){
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah ".$all_lower." berhasil. ".$first_upercase." ". $data_insert['title']. " berhasil ditambahkan.");
+        }else{
+            $this->session->set_userdata('error', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah ".$all_lower." gagal. ".$first_upercase." ". $data_insert['title']. " gagal ditambahkan.");
+        }
+        return $data;    
+    }
+
+    // sudah di tes, bekerja dengan baik
+
+    public function inactive_menu_all($id, $tipe_menu){
+        $data = array(
+            "status" => 'inactive',
+        );
+        $this->db->where('id =', $id);
+        $data = $this->db->UPDATE($tipe_menu, $data);
+        return $data;
+    }
+
+    public function active_menu_all($id, $tipe_menu){
+        $data = array(
+            "status" => 'active',
+        );
+        $this->db->where('id =', $id);
+        $data = $this->db->UPDATE($tipe_menu, $data);
+        return $data;
+    }
+
+    public function hapus_menu_all($id, $urutan, $parent, $tipe_menu){
+        $this->db->where('id', $id);
+        $data = $this->db->delete($tipe_menu);
+        $this->db->set('urutan', 'urutan-1', FALSE);
+        $this->db->where('id_parent =', $parent);
+        $this->db->where('urutan >=', $urutan);
+        $this->db->update($tipe_menu);
+        return $data;
+    }
+
+
+
+
+    //----------------------------------------------------------------------- Proses CRUD menu admin
+    public function ambil_menu_admin(){
+        $this->db->select('*');
+        $this->db->from("admin_menu");
+        $this->db->where('id_parent', 0);
+        $this->db->order_by('urutan', 'asc');
+        $data = $this->db->get()->result_array();
+        return $data;
+    }
+
+    public function ambil_submenu_admin($id_menu){
         $this->db->select('*');
         $this->db->from("admin_menu");
         $this->db->where('id_parent', $id_menu);
@@ -115,17 +187,25 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
-
-    public function tambah_menu($data_insert, $parent, $urutan){
+    public function tambah_menu_admin($data_insert, $parent, $urutan){
         $this->db->set('urutan', 'urutan+1', FALSE);
         $this->db->where('id_parent =', $parent);
         $this->db->where('urutan >=', $urutan);
         $this->db->update('admin_menu');
         $data = $this->db->INSERT('admin_menu', $data_insert);
+        if($data){
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah admin menu berhasil. Admin menu ". $data_insert['title']. " berhasil ditambahkan.");
+        }else{
+            $this->session->set_userdata('error', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah admin menu gagal. Admin menu ". $data_insert['title']. " gagal ditambahkan.");
+        }
         return $data;    
     }
 
-    public function inactive_menu($id){
+    public function inactive_menu_admin($id){
         $data = array(
             "status" => 'inactive',
         );
@@ -134,7 +214,7 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
-    public function active_menu($id){
+    public function active_menu_admin($id){
         $data = array(
             "status" => 'active',
         );
@@ -143,7 +223,7 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
-    public function hapus_menu($id, $urutan, $parent){
+    public function hapus_menu_admin($id, $urutan, $parent){
         $this->db->where('id', $id);
         $data = $this->db->delete('admin_menu');
         $this->db->set('urutan', 'urutan-1', FALSE);
@@ -153,26 +233,74 @@ class Modeladmin extends CI_Model{
         return $data;
     }
 
-    public function menu_home(){
+    //----------------------------------------------------------------------- Proses CRUD menu web
+    public function ambil_menu_web(){
         $this->db->select('*');
         $this->db->from('web_menu');
-        $this->db->where('status', 1);
         $this->db->order_by('urutan', 'asc');
         $data = $this->db->get()->result_array();
         return $data;
     }
 
-    public function spesial_menu_home(){
+    public function ambil_submenu_web($id_menu){
         $this->db->select('*');
-        $this->db->from('web_menu');
-        $this->db->where('status', 2);
+        $this->db->from("web_menu");
+        $this->db->where('id_parent', $id_menu);
         $this->db->order_by('urutan', 'asc');
         $data = $this->db->get()->result_array();
         return $data;
     }
 
+    public function tambah_menu_web($data_insert, $parent, $urutan){
+        $this->db->set('urutan', 'urutan+1', FALSE);
+        $this->db->where('id_parent =', $parent);
+        $this->db->where('urutan >=', $urutan);
+        $this->db->update('web_menu');
+        $data = $this->db->INSERT('web_menu', $data_insert);
+        if($data){
+            $this->session->set_userdata('notif', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah web menu berhasil. Web menu ". $data_insert['title']. " berhasil ditambahkan.");
+        }else{
+            $this->session->set_userdata('error', 1);
+            $this->session->set_userdata('type_notif', 'success');
+            $this->session->set_userdata('pesan_notif', "Tambah web menu gagal. Web menu ". $data_insert['title']. " gagal ditambahkan.");
+        }
+        return $data;    
+    }
 
-    //------------------------------------------------------------------------------------------------------ Login Admin Proses
+    public function inactive_menu_web($id){
+        $data = array(
+            "status" => 'inactive',
+        );
+        $this->db->where('id =', $id);
+        $data = $this->db->UPDATE('web_menu', $data);
+        return $data;
+    }
+
+    public function active_menu_web($id){
+        $data = array(
+            "status" => 'active',
+        );
+        $this->db->where('id =', $id);
+        $data = $this->db->UPDATE('web_menu', $data);
+        return $data;
+    }
+
+    public function hapus_menu_web($id, $urutan, $parent){
+        $this->db->where('id', $id);
+        $data = $this->db->delete('web_menu');
+        $this->db->set('urutan', 'urutan-1', FALSE);
+        $this->db->where('id_parent =', $parent);
+        $this->db->where('urutan >=', $urutan);
+        $this->db->update('web_menu');
+        return $data;
+    }
+
+
+
+
+    //------------------------------------------------------------------------------------------- Login Admin Proses
     public function check_login($kontak,$password){
         $this->db->select('*');
         $this->db->from('admin_user');
@@ -204,7 +332,6 @@ class Modeladmin extends CI_Model{
         $this->session->set_userdata('pesan_notif', "Email Tidak Ditemukan, Pastikan penulisan benar atau jika belum memiliki akun dapat melakukan pendaftaran");
         return false;
     }
-
     
     public function lupa_password($kontak){
         $this->db->select('*');
@@ -237,6 +364,12 @@ class Modeladmin extends CI_Model{
         $this->db->where('email', "saya@ahmadsahro.info");
         return($this->db->UPDATE('admin_user', $data));
     }
+
+
+
+
+
+
 
 
 }

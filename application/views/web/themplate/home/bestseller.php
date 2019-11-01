@@ -12,7 +12,7 @@
 					<div class="product_slider_container">
 						<div class="owl-carousel owl-theme product_slider">
 							<?php 
-						    $best_seller = $this->modelproduk->best_seller();
+						    $best_seller = $this->modelweb->daftar_produk();
 							for ($i=0; $i < count($best_seller); $i++) { 
 							?>
 								<div class="owl-item product_slider_item">

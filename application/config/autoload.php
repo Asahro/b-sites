@@ -134,7 +134,6 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
     'modellogin',
-   	'modelmenu',
    	'modelkunci',
    	'modeladmin',
    	'modelslider',
@@ -144,4 +143,5 @@ $autoload['model'] = array(
    	'modelproduk',
       'modelsubscribe',
       'modelkonten',
+      'modelweb',
 );

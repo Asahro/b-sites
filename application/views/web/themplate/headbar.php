@@ -173,17 +173,17 @@
 						<nav class="navbar">
 							<ul class="navbar_menu">
 								<?php 
-				                    $menu = $this->modelmenu->menu_home();
+				                    $menu = $this->modelweb->ambil_menu();
 				                    for ($i=0; $i < count($menu); $i++) { ?>
-										<li><a href="<?php echo base_url().$menu[$i]['url'] ?>"><?php echo $menu[$i]['title'] ?></a></li>
+										<li><a href="<?php echo base_url().$menu[$i]['link'] ?>"><?php echo $menu[$i]['title'] ?></a></li>
 								<?php } ?>
 							</ul>
 							<ul class="navbar_user">
 								<?php 
-				                    $menu = $this->modelmenu->spesial_menu_home();
+				                    $menu = $this->modelweb->spesial_menu_home();
 				                    for ($i=0; $i < count($menu); $i++) { ?>
 										<li class="checkout">
-											<a href="<?php echo base_url().$menu[$i]['url'] ?>">
+											<a href="<?php echo base_url().$menu[$i]['link'] ?>">
 												<i class="<?php echo $menu[$i]['logo'] ?>" aria-hidden="true"></i>
 												<span id="<?php echo $menu[$i]['id_span'] ?>" class="checkout_items">2</span>
 											</a>
@@ -225,9 +225,9 @@
 						</ul>
 					</li>
 					<?php 
-	                    $menu = $this->modelmenu->menu_home();
+	                    $menu = $this->modelweb->ambil_menu();
 	                    for ($i=0; $i < count($menu); $i++) { ?>
-						<li class="menu_item"><a href="<?php echo base_url().$menu[$i]['url'] ?>"><?php echo $menu[$i]['title'] ?></a></li>
+						<li class="menu_item"><a href="<?php echo base_url().$menu[$i]['link'] ?>"><?php echo $menu[$i]['title'] ?></a></li>
 					<?php } ?>
 				</ul>
 			</div>

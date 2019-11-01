@@ -1,6 +1,12 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/styles/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/styles/responsive.css">
 
+	<style type="text/css">
+		.add_to_cart_button {
+		    margin-left: 0px !important;
+		}
+	</style>
+
 	<div class="new_arrivals">
 		<div class="container">
 			<div class="row">

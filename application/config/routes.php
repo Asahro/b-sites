@@ -25,10 +25,12 @@ $route['admin/cek-login'] = 'admin/cek_login';
 $route['admin/simpan-gambar'] = 'admin/simpan_gambar';
 $route['admin/cek-lupa-password'] = 'admin/cek_lupa_password';
 $route['admin/upload-data-admin'] = 'admin/upload_data_admin';
-$route['admin/upload-menu-admin'] = 'admin/upload_menu_admin';
-$route['admin/inactive-menu-admin/(:any)'] = 'admin/inactive_menu_admin/$1';
-$route['admin/active-menu-admin/(:any)'] = 'admin/active_menu_admin/$1';
-$route['admin/hapus-menu-admin/(:any)/(:any)/(:any)'] = 'admin/hapus_menu_admin/$1/$2/$3';
+
+
+$route['admin/upload-menu-all/(:any)'] = 'admin/upload_menu_all/$1';
+$route['admin/inactive-menu-admin/(:any)/(:any)'] = 'admin/inactive_menu_all/$1/$2';
+$route['admin/active-menu-admin/(:any)/(:any)'] = 'admin/active_menu_all/$1/$2';
+$route['admin/hapus-menu-admin/(:any)/(:any)/(:any)/(:any)'] = 'admin/hapus_menu_all/$1/$2/$3/$4';
 
 $route['admin/(:any)'] = 'admin/view/$1';
 $route['admin/(:any)/(:any)'] = 'admin/views/$1/$2';
@@ -37,9 +39,6 @@ $route['admin/(:any)/(:any)/(:any)/(:any)'] = 'admin/viewsss/$1/$2/$3/$4';
 
 
 $route['email'] = 'menu/email_view';
-
-
-
 
 
 

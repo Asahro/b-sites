@@ -130,7 +130,11 @@ class Admin extends CI_Controller {
         redirect('admin/daftar-admin');
 	}
 
-	public function upload_menu_admin()  
+
+
+
+	// ------------------------------------------------------------------------------ CRUD All Menu
+	public function upload_menu_all($type_menu)  
 	{
         $data_insert = $this->input->post();
 	    $parent = $this->input->post("id_parent");
@@ -139,43 +143,63 @@ class Admin extends CI_Controller {
         }
         $urutan = $this->input->post("urutan");
 
-        $result = $this->modeladmin->tambah_menu($data_insert, $parent, $urutan);
+        $result = $this->modeladmin->tambah_menu_all($data_insert, $parent, $urutan, $type_menu);
 		$menu = $this->modeladmin->ambil_menu($this->session->userdata('role'));
-        $this->session->set_userdata('menu', $menu);
-        if($result){
-            $this->session->set_userdata('notif', 1);
-            $this->session->set_userdata('type_notif', 'success');
-            $this->session->set_userdata('pesan_notif', "Tambah menu berhasil. Menu ". $data_insert['title']. " berhasil ditambahkan.");
-        }else{
-        	$this->session->set_userdata('error', 1);
-            $this->session->set_userdata('type_notif', 'success');
-            $this->session->set_userdata('pesan_notif', "Tambah menu gagal. Menu ". $data_insert['title']. " gagal ditambahkan.");
-        }
+        $this->session->set_userdata($type_menu, $menu);
         redirect('admin/developer/menu');
-        print_r($status);
 	}
 
-	public function inactive_menu_admin($id){
-        $result = $this->modeladmin->inactive_menu($id);
+	public function inactive_menu_all($id, $type_menu){
+        $result = $this->modeladmin->inactive_menu_all($id, $type_menu);
 		$menu = $this->modeladmin->ambil_menu($this->session->userdata('role'));
-		$this->session->set_userdata('adminmenu', "in");
+		$this->session->set_userdata($type_menu, "in");
         $this->session->set_userdata('menu', $menu);
         redirect('admin/developer/menu');
 	}
 
-	public function active_menu_admin($id){
-        $result = $this->modeladmin->active_menu($id);
+	public function active_menu_all($id, $type_menu){
+        $result = $this->modeladmin->active_menu_all($id, $type_menu);
 		$menu = $this->modeladmin->ambil_menu($this->session->userdata('role'));
-		$this->session->set_userdata('adminmenu', "in");
-        // $this->session->set_userdata('menu', $menu);
+		$this->session->set_userdata($type_menu, "in");
+        $this->session->set_userdata('menu', $menu);
         redirect('admin/developer/menu');
 	}
 
-	public function hapus_menu_admin($id, $urutan, $parent){
-        $result = $this->modeladmin->hapus_menu($id, $urutan, $parent);
-		$this->session->set_userdata('adminmenu', "in");
+	public function hapus_menu_all($id, $urutan, $parent, $type_menu){
+        $result = $this->modeladmin->hapus_menu_all($id, $urutan, $parent, $type_menu);
+		$this->session->set_userdata($type_menu, "in");
         redirect('admin/developer/menu');
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public function sendmail($email, $title, $pesan, $image){
         // $data['greating'] = "Undangan Admin";

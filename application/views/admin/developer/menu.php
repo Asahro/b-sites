@@ -102,14 +102,14 @@
                                                 <p class="float-left">Tambah, Hapus, Dan Edit Menu Serta Urutannya</p>
                                             </div>
                                         </a>
-                                        <div class="btn btn-primary col-xs-3 col-sm-3 col-md-3 ml-3" onclick="tambahmenuadmin()">Tambah Menu Admin</div>
+                                        <div class="btn btn-primary col-xs-3 col-sm-3 col-md-3 ml-3" onclick="tambahadminmenu()">Tambah Menu Admin</div>
                                     </div>
-                                    <div id="adminmenu" class="panel-collapse panel-ic collapse <?php echo($this->session->userdata('adminmenu'))?> width100">
+                                    <div id="adminmenu" class="panel-collapse panel-ic collapse <?php echo($this->session->userdata('admin_menu')); $this->session->set_userdata('admin_menu', '');?> width100">
                                         <div class="panel-body admin-panel-content">
 
                                                 <?php
                                                 $data = []; 
-                                                $menu = $this->modeladmin->ambil_menu_menu();
+                                                $menu = $this->modeladmin->ambil_menu_admin();
                                                 $data['menu'][0] = "Pertama"; 
                                                 $data['menu_urutan'][0] = 1; 
                                                 for($i = 0; $i < count($menu); $i++){ 
@@ -132,18 +132,18 @@
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-pen"></i></span>
                                                         </button>
                                                         
-                                                        <button type="button" class="close sucess-op action" title="Inactive Menu" onclick="inactiveadminmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>')" aria-label="Close">
+                                                        <button type="button" class="close sucess-op action" title="Inactive Menu" onclick="inactivemenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', 'admin_menu' )" aria-label="Close">
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-minus-circle"></i></span>
                                                         </button>
 
                                                     <?php 
                                                     }else{ ?>
 
-                                                        <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusadminmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', '<?php echo $menu[$i]['urutan'] ?>', '<?php echo $menu[$i]['id_parent'] ?>')" aria-label="Close">
+                                                        <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', '<?php echo $menu[$i]['urutan'] ?>', '<?php echo $menu[$i]['id_parent'] ?>', 'admin_menu')" aria-label="Close">
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
                                                         </button>
                                  
-                                                        <button type="button" class="close sucess-op action" onclick="activeadminmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>')"  aria-label="Close">
+                                                        <button type="button" class="close sucess-op action" onclick="activemenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', 'admin_menu')"  aria-label="Close">
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
                                                         </button>
 
@@ -156,7 +156,7 @@
                                                 </div>
 
                                                 <?php 
-                                                    $submenu = $this->modeladmin->ambil_submenu_menu($menu[$i]['id']);
+                                                    $submenu = $this->modeladmin->ambil_submenu_admin($menu[$i]['id']);
                                                     $data[$menu[$i]['title']][0] = "Pertama";
                                                     $data[$menu[$i]['title']."_urutan"][0] = ($menu[$i]['id']."01");
                                                     for($j = 0; $j < count($submenu); $j++){
@@ -178,15 +178,15 @@
                                                                     <button type="button" class="close sucess-op edit action" onclick="alert('oke2')" aria-label="Close">
                                                                         <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-pen simbol"></i></span>
                                                                     </button>
-                                                                    <button type="button" class="close sucess-op action" onclick="inactiveadminmenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>')" aria-label="Close">
+                                                                    <button type="button" class="close sucess-op action" onclick="inactivemenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>', 'admin_menu')" aria-label="Close">
                                                                         <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-minus-circle simbol"></i></span>
                                                                     </button>
                                                                 <?php 
                                                                 }else{ ?>
-                                                                    <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusadminmenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>', '<?php echo $submenu[$j]['urutan'] ?>', '<?php echo $submenu[$j]['id_parent'] ?>')" aria-label="Close">
+                                                                    <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusmenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>', '<?php echo $submenu[$j]['urutan'] ?>', '<?php echo $submenu[$j]['id_parent'] ?>', 'admin_menu')" aria-label="Close">
                                                                         <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
                                                                     </button>
-                                                                    <button type="button" class="close sucess-op action" onclick="activeadminmenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>')"  aria-label="Close">
+                                                                    <button type="button" class="close sucess-op action" onclick="activemenu('<?php echo $submenu[$j]['id'] ?>', '<?php echo $submenu[$j]['title'] ?>', 'admin_menu')"  aria-label="Close">
                                                                         <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
                                                                     </button>
                                                                 <?php } ?>
@@ -225,37 +225,112 @@
                                         <div class="btn btn-primary col-xs-3 col-sm-3 col-md-3 ml-3" onclick="tambahmenuweb()">Tambah Menu Web</div>
 
                                     </div>
-                                    <div id="webmenu" class="panel-collapse panel-ic collapse <?php echo($this->session->userdata('webmenu'))?> width100">
+                                    <div id="webmenu" class="panel-collapse panel-ic collapse <?php echo($this->session->userdata('web_menu')); $this->session->set_userdata('web_menu', ''); ?> width100">
                                         <div class="panel-body admin-panel-content">
 
-                                            <div class="alert alert-success alert-success-style1">
-                                                <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
-                                                        <span class="icon-sc-cl" aria-hidden="true">&times;</span>
-                                                    </button>
-                                                <i class="fa fa-check adminpro-checked-pro admin-check-pro" aria-hidden="true"></i>
-                                                <p><strong>Success!</strong> Indicates a successful or positive action.</p>
-                                            </div>
-                                            <div class="alert alert-info alert-success-style2">
-                                                <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
-                                                        <span class="icon-sc-cl" aria-hidden="true">&times;</span>
-                                                    </button>
-                                                <i class="fa fa-info-circle adminpro-inform admin-check-pro" aria-hidden="true"></i>
-                                                <p><strong>Info!</strong> Indicates a neutral informative change or action.</p>
-                                            </div>
-                                            <div class="alert alert-warning alert-success-style3">
-                                                <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
-                                                        <span class="icon-sc-cl" aria-hidden="true">&times;</span>
-                                                    </button>
-                                                <i class="fa fa-exclamation-triangle adminpro-warning-danger admin-check-pro" aria-hidden="true"></i>
-                                                <p><strong>Warning!</strong> A warning that might need attention.</p>
-                                            </div>
-                                            <div class="alert alert-danger alert-mg-b alert-success-style4">
-                                                <button type="button" class="close sucess-op" data-dismiss="alert" aria-label="Close">
-                                                        <span class="icon-sc-cl" aria-hidden="true">&times;</span>
-                                                    </button>
-                                                <i class="fa fa-times adminpro-danger-error admin-check-pro" aria-hidden="true"></i>
-                                                <p><strong>Danger!</strong> A dangerous or potentially negative action.</p>
-                                            </div>
+
+                                            <?php
+                                                $data_web = []; 
+                                                $menu_web = $this->modeladmin->ambil_menu_web();
+                                                $data_web['menu'][0] = "Pertama"; 
+                                                $data_web['menu_urutan'][0] = 1; 
+                                                for($i = 0; $i < count($menu_web); $i++){ 
+                                                    $data_web['menu'][$i+1] = "Setelah ".$menu_web[$i]['title'];
+                                                    $data_web['menu_urutan'][$i+1] = $menu_web[$i]['urutan']+1;
+                                                    ?>
+                                                <div class="alert ptpb 
+                                                    <?php 
+                                                        if($menu_web[$i]['status'] == "active"){ ?>
+                                                            alert-info alert-success-style2
+                                                    <?php 
+                                                        }else{ ?>
+                                                            alert-danger alert-success-style4
+                                                    <?php } ?>
+                                                ">
+                                                    <?php 
+                                                    if($menu_web[$i]['status'] == "active"){ ?>
+
+                                                        <button type="button" class="close sucess-op edit action"  title="Edit Menu" aria-label="Close" onclick="ubahwebmenu('<?php echo $menu_web[$i]['id'] ?>', '<?php echo $menu_web[$i]['title'] ?>')">
+                                                            <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-pen"></i></span>
+                                                        </button>
+                                                        
+                                                        <button type="button" class="close sucess-op action" title="Inactive Menu" onclick="inactivemenu('<?php echo $menu_web[$i]['id'] ?>', '<?php echo $menu_web[$i]['title'] ?>', 'web_menu')" aria-label="Close">
+                                                            <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-minus-circle"></i></span>
+                                                        </button>
+
+                                                    <?php 
+                                                    }else{ ?>
+
+                                                        <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusmenu('<?php echo $menu_web[$i]['id'] ?>', '<?php echo $menu_web[$i]['title'] ?>', '<?php echo $menu_web[$i]['urutan'] ?>', '<?php echo $menu_web[$i]['id_parent'] ?>', 'web_menu')" aria-label="Close">
+                                                            <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
+                                                        </button>
+                                 
+                                                        <button type="button" class="close sucess-op action" onclick="activemenu('<?php echo $menu_web[$i]['id'] ?>', '<?php echo $menu_web[$i]['title'] ?>', 'web_menu')"  aria-label="Close">
+                                                            <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+                                                        </button>
+
+                                                    <?php } ?>
+                                                    <i class="fas <?php echo $menu_web[$i]['logo'] ?> admin-check-pro" aria-hidden="true"></i>
+                                                    <p><strong><?php echo $menu_web[$i]['title'] ?></strong> 
+                                                        ( Menu / <?php echo $menu_web[$i]['status'] ?> ) <br>
+                                                        <?php echo(base_url())?><strong><?php echo $menu_web[$i]['link'] ?></strong>
+                                                    </p>
+                                                </div>
+
+                                                <?php 
+                                                    $submenu_web = $this->modeladmin->ambil_submenu_web($menu_web[$i]['id']);
+                                                    $data_web[$menu_web[$i]['title']][0] = "Pertama";
+                                                    $data_web[$menu_web[$i]['title']."_urutan"][0] = ($menu_web[$i]['id']."01");
+                                                    for($j = 0; $j < count($submenu_web); $j++){
+                                                        $data_web[$menu_web[$i]['title']][$j+1] = "Setelah ".$submenu_web[$j]['title'];
+                                                        $data_web[$menu_web[$i]['title']."_urutan"][$j+1] = $submenu_web[$j]['urutan']+1;
+                                                        if(count($submenu_web)){
+                                                            ?>
+                                                            <div class="alert  ptpb 
+                                                                <?php 
+                                                                    if($submenu_web[$j]['status'] == "active"){ ?>
+                                                                        alert-success alert-success-style1
+                                                                <?php 
+                                                                    }else{ ?>
+                                                                        alert-warning alert-success-style3
+                                                                <?php } ?>
+                                                            ">
+                                                                <?php 
+                                                                if($submenu_web[$j]['status'] == "active"){ ?>
+                                                                    <button type="button" class="close sucess-op edit action" onclick="alert('oke2')" aria-label="Close">
+                                                                        <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-pen simbol"></i></span>
+                                                                    </button>
+                                                                    <button type="button" class="close sucess-op action" onclick="inactivemenu('<?php echo $submenu_web[$j]['id'] ?>', '<?php echo $submenu_web[$j]['title'] ?>', 'web_menu')" aria-label="Close">
+                                                                        <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-minus-circle simbol"></i></span>
+                                                                    </button>
+                                                                <?php 
+                                                                }else{ ?>
+                                                                    <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusmenu('<?php echo $submenu_web[$j]['id'] ?>', '<?php echo $submenu_web[$j]['title'] ?>', '<?php echo $submenu_web[$j]['urutan'] ?>', '<?php echo $submenu_web[$j]['id_parent'] ?>', 'web_menu')" aria-label="Close">
+                                                                        <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
+                                                                    </button>
+                                                                    <button type="button" class="close sucess-op action" onclick="activemenu('<?php echo $submenu_web[$j]['id'] ?>', '<?php echo $submenu_web[$j]['title'] ?>', 'web_menu')"  aria-label="Close">
+                                                                        <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+                                                                    </button>
+                                                                <?php } ?>
+                                                                <i class="admin-check-pro bg-white" aria-hidden="true"></i>
+                                                                <p><strong><?php echo $submenu_web[$j]['title'] ?></strong> 
+                                                                    ( Submenu / <?php echo $submenu_web[$j]['status'] ?> )<br>
+                                                                    <?php echo(base_url())?><strong><?php echo $menu[$i]['link'] ?>/<?php echo $submenu_web[$j]['link'] ?></strong></p>
+                                                            </div>
+                                                        <?php }
+                                                    } ?>       
+
+                                                    <!--
+                                                        <div class="alert alert-info alert-success-style2 add-submenu-luar">
+                                                            <i class="admin-check-pro bg-white add-submenu-dalam" aria-hidden="true"></i>
+                                                            <p class="text-center"><strong>++++++++ Add Submenu ++++++++</strong></p>
+                                                        </div> 
+                                                    -->
+                                        
+                                            <?php } ?>
+
+
+
 
                                         </div>
                                     </div>
@@ -310,8 +385,12 @@
                                 </div>
 
                             </div>
+
+
                         </div>
                     </div>
+
+
 
 
 
@@ -320,10 +399,10 @@
         </div>
         <!-- Alert End-->
 
-        <div class="modal fade" id="addmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="addadminmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog mt-25" role="document">
             <div class="modal-content">
-                <form action="<?php echo(base_url())?>admin/upload-menu-admin" method="post">                    
+                <form action="<?php echo(base_url())?>admin/upload-menu-all/admin_menu" method="post">        
                   <div class="modal-header">
                   </div>
                   <div class="modal-body">
@@ -372,7 +451,7 @@
                         <div class="single-pro-size col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <h6>Title</h6>
                             <div class="form-group">
-                                <input type="text" placeholder="Masukan Title" required="" name="title" class="form-control">
+                                <input type="text" placeholder="Masukan Title" required="" id="title" onchange="updatelink()" name="title" class="form-control">
                             </div>
                         </div>
                         <div class="single-pro-size col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -415,10 +494,13 @@
         </div>
 
 
+
+
+
         <div class="modal fade" id="editmenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
           <div class="modal-dialog mt-25" role="document">
             <div class="modal-content">
-                <form action="<?php echo(base_url())?>admin/upload-menu-admin" method="post">                    
+                <form action="<?php echo(base_url())?>admin/upload-menu-admin/admin-menu" method="post">                    
                   <div class="modal-header">
                   </div>
                   <div class="modal-body">
@@ -566,8 +648,16 @@
             setTimeout(function(){
                 typemenu();
             },  1000);
-            function tambahmenuadmin(){
-                $('#addmenu').modal('show');            
+            function tambahadminmenu(){
+                $('#addadminmenu').modal('show');            
+            }
+
+            function updatelink(){
+                title
+            }
+
+            function tambahwebmenu(){
+                $('#addwebmenu').modal('show');            
             }
 
             function typemenu(){
@@ -604,7 +694,12 @@
                 $("#order").prop("disabled", false);
             }
 
-            function inactiveadminmenu (id, title){
+
+            function ubahadminmenu(id, title, urutan){
+                $('#editmenu').modal('show');
+            }
+
+            function inactivemenu (id, title, type_menu){
                 swal({
                     title: "Inactive Menu "+title,
                     text: "Menu yang enactive masih bisa diactifkan kembali. \n Inactivekan Menu ?",
@@ -616,11 +711,11 @@
                     closeOnConfirm: false
                 }, function (isConfirm) {
                     if (!isConfirm) return;
-                    window.location.href = "<?php echo(base_url())?>admin/inactive-menu-admin/"+id;
+                    window.location.href = "<?php echo(base_url())?>admin/inactive-menu-admin/"+id+"/"+type_menu;
                 });     
             }
 
-            function activeadminmenu (id, title){
+            function activemenu (id, title, type_menu){
                 swal({
                     title: "Active Menu "+title,
                     text: "Aktifkan kembali menu. \n Aktifkan Menu ?",
@@ -632,11 +727,11 @@
                     closeOnConfirm: false
                 }, function (isConfirm) {
                     if (!isConfirm) return;
-                    window.location.href = "<?php echo(base_url())?>admin/active-menu-admin/"+id;
+                    window.location.href = "<?php echo(base_url())?>admin/active-menu-admin/"+id+"/"+type_menu;
                 });     
             }
 
-            function hapusadminmenu(id, title, urutan, id_parent){
+            function hapusmenu(id, title, urutan, id_parent, type_menu){
                 swal({
                     title: "Hapus Admin Menu "+title,
                     text: "Data yang sudah di hapus tidak bisa di kembalikan. \n Hapusk Admin Menu ?",
@@ -648,11 +743,7 @@
                     closeOnConfirm: false
                 }, function (isConfirm) {
                     if (!isConfirm) return;
-                    window.location.href = "<?php echo(base_url())?>admin/hapus-menu-admin/"+id+"/"+urutan+"/"+id_parent;
+                    window.location.href = "<?php echo(base_url())?>admin/hapus-menu-admin/"+id+"/"+urutan+"/"+id_parent+"/"+type_menu;
                 });
-            }
-
-            function ubahadminmenu(id, title, urutan){
-                $('#editmenu').modal('show');
             }
         </script>

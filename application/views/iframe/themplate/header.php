@@ -14,10 +14,6 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/plugins/OwlCarousel2-2.2.1/animate.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-
-			
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/styles/single_styles.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/styles/single_responsive.css">
 	</head>
 	<body>
 	<div class="super_container">
