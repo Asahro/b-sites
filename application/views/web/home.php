@@ -30,15 +30,6 @@
 	.corner-ribbon.red{background: #e43;}
 </style>
 
-	<?php $this->load->view('web/themplate/headbar'); ?>
-
-	<?php $this->load->view('web/themplate/home/slider'); ?>
-
-	<?php $this->load->view('web/themplate/home/kategori'); ?>
-
-	<?php $this->load->view('web/themplate/home/produk-baru'); ?>
-
-	<?php $this->load->view('web/themplate/home/promo'); ?>
 
 	<?php $this->load->view('web/themplate/home/bestseller'); ?>
 

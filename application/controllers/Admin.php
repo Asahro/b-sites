@@ -13,6 +13,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
 	public function viewss($folder, $file, $id){
 		if($file == "hapus-admin"){
 			$file = './gambar/'.$this->input->post('jenis').'/'.$this->input->post('gambar');

@@ -94,8 +94,7 @@
                                         <span class="btn btn-default btn-file">
                                           Pilih Photo Profile 
                                           <input type="file" id="imgInp" name="image" class="cropit-image-input">
-                                        </span>
-                                    </span>
+                                        </span                                    </span>
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <input type="text" name="nama_photo" class="form-control d-none" id="idphoto">

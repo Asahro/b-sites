@@ -47,7 +47,7 @@
     <script src="<?php echo base_url() ?>dassets/js/sparkline/jquery.charts-sparkline.js"></script>
 
     <script src="<?php echo base_url() ?>dassets/js/notifications/Lobibox.js"></script>
-    <script src="<?php echo base_url() ?>nassets/plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="<?php echo base_url() ?>dassets/js/Isotope/isotope.pkgd.min.js"></script>
     <script src="<?php echo base_url() ?>dassets/js/summernote/summernote.min.js"></script>
     <script src="<?php echo base_url() ?>dassets/js/summernote/summernote-active.js"></script>
     <script src="<?php echo base_url() ?>dassets/js/peity/peity-active.js"></script>

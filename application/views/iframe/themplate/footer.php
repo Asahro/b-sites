@@ -9,6 +9,7 @@
 <script src="<?php echo base_url() ?>nassets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+<script src="<?php echo base_url() ?>nassets/js/custom.js"></script>
 
 </body>
 </html>

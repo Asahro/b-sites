@@ -24,7 +24,7 @@
                             <iframe src="<?php echo base_url() ?>/iframe/produk-kategori-list" class="col-12 b-none" style="height: 1006px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/produk-terbaru" class="col-12 b-none" style="height: 1012px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/produk-promo" class="col-12 b-none" style="height: 590px;"></iframe>
-                            <iframe src="<?php echo base_url() ?>/iframe/produk-best-seller" class="col-12 b-none" style="height: 1590px;"></iframe>
+                            <iframe src="<?php echo base_url() ?>/iframe/produk-best-seller" class="col-12 b-none" style="height: 590px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/themplate-jaminan" class="col-12 b-none" style="height: 174px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/themplate-langganan" class="col-12 b-none" style="height: 201px;"></iframe>
                             <iframe src="<?php echo base_url() ?>/iframe/themplate-footbar" class="col-12 b-none" style="height: 130px;"></iframe>
