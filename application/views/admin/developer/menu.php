@@ -109,7 +109,24 @@
 
                                                 <?php
                                                 $data = []; 
-                                                $menu = $this->modeladmin->ambil_menu_admin();
+
+                                                $curl = curl_init();
+                                                curl_setopt_array($curl, array(
+                                                  CURLOPT_URL => base_url()."api/ambil-menu-admin",
+                                                  CURLOPT_RETURNTRANSFER => true,
+                                                  CURLOPT_TIMEOUT => 30,
+                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                  CURLOPT_CUSTOMREQUEST => "GET",
+                                                  CURLOPT_HTTPHEADER => array(
+                                                    "cache-control: no-cache"
+                                                  ),
+                                                ));
+                                                $response = curl_exec($curl);
+                                                $err = curl_error($curl);
+                                                curl_close($curl);
+                                                $response = json_decode($response, true);
+                                                $menu = $response['data']; 
+
                                                 $data['menu'][0] = "Pertama"; 
                                                 $data['menu_urutan'][0] = 1; 
                                                 for($i = 0; $i < count($menu); $i++){ 
@@ -125,7 +142,25 @@
                                                             alert-danger alert-success-style4
                                                     <?php } ?>
                                                 ">
-                                                    <?php 
+                                                <?php 
+                                                    $curl = curl_init();
+                                                    curl_setopt_array($curl, array(
+                                                      CURLOPT_URL => base_url()."api/ambil-submenu-admin/".$menu[$i]['id'],
+                                                      CURLOPT_RETURNTRANSFER => true,
+                                                      CURLOPT_TIMEOUT => 30,
+                                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                      CURLOPT_CUSTOMREQUEST => "GET",
+                                                      CURLOPT_HTTPHEADER => array(
+                                                        "cache-control: no-cache"
+                                                      ),
+                                                    ));
+                                                    $response = curl_exec($curl);
+                                                    $err = curl_error($curl);
+                                                    curl_close($curl);
+                                                    $response = json_decode($response, true);
+                                                    $submenu = $response['data']; 
+
+
                                                     if($menu[$i]['status'] == "active"){ ?>
 
                                                         <button type="button" class="close sucess-op edit action"  title="Edit Menu" aria-label="Close" onclick="ubahadminmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>')">
@@ -137,16 +172,29 @@
                                                         </button>
 
                                                     <?php 
-                                                    }else{ ?>
+                                                    }else{ 
+                                                        if(count($submenu) > 0){
+                                                        ?>
+
+                                                        <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="barier('<?php echo $menu[$i]['title'] ?>')" aria-label="Close">
+                                                            <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
+                                                        </button>
+
+                                                        <?php 
+                                                        }else{ 
+                                                        ?>
 
                                                         <button type="button" class="close sucess-op edit action" title="Hapus Menu" onclick="hapusmenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', '<?php echo $menu[$i]['urutan'] ?>', '<?php echo $menu[$i]['id_parent'] ?>', 'admin_menu')" aria-label="Close">
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-trash"></i></span>
                                                         </button>
-                                 
+
+                                                        <?php 
+                                                        } 
+                                                        ?>
+                         
                                                         <button type="button" class="close sucess-op action" onclick="activemenu('<?php echo $menu[$i]['id'] ?>', '<?php echo $menu[$i]['title'] ?>', 'admin_menu')"  aria-label="Close">
                                                             <span class="icon-sc-cl" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
                                                         </button>
-
                                                     <?php } ?>
                                                     <i class="fas <?php echo $menu[$i]['logo'] ?> admin-check-pro" aria-hidden="true"></i>
                                                     <p><strong><?php echo $menu[$i]['title'] ?></strong> 
@@ -156,7 +204,6 @@
                                                 </div>
 
                                                 <?php 
-                                                    $submenu = $this->modeladmin->ambil_submenu_admin($menu[$i]['id']);
                                                     $data[$menu[$i]['title']][0] = "Pertama";
                                                     $data[$menu[$i]['title']."_urutan"][0] = ($menu[$i]['id']."01");
                                                     for($j = 0; $j < count($submenu); $j++){
@@ -231,7 +278,24 @@
 
                                             <?php
                                                 $data_web = []; 
-                                                $menu_web = $this->modeladmin->ambil_menu_web();
+
+                                                $curl = curl_init();
+                                                curl_setopt_array($curl, array(
+                                                  CURLOPT_URL => base_url()."api/ambil-menu-web",
+                                                  CURLOPT_RETURNTRANSFER => true,
+                                                  CURLOPT_TIMEOUT => 30,
+                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                  CURLOPT_CUSTOMREQUEST => "GET",
+                                                  CURLOPT_HTTPHEADER => array(
+                                                    "cache-control: no-cache"
+                                                  ),
+                                                ));
+                                                $response = curl_exec($curl);
+                                                $err = curl_error($curl);
+                                                curl_close($curl);
+                                                $response = json_decode($response, true);
+                                                $menu_web = $response['data']; 
+
                                                 $data_web['menu'][0] = "Pertama"; 
                                                 $data_web['menu_urutan'][0] = 1; 
                                                 for($i = 0; $i < count($menu_web); $i++){ 
@@ -278,7 +342,7 @@
                                                 </div>
 
                                                 <?php 
-                                                    $submenu_web = $this->modeladmin->ambil_submenu_web($menu_web[$i]['id']);
+                                                    $submenu_web = $this->modeladmin->ambil_submenu_all($menu_web[$i]['id'], "web_menu");
                                                     $data_web[$menu_web[$i]['title']][0] = "Pertama";
                                                     $data_web[$menu_web[$i]['title']."_urutan"][0] = ($menu_web[$i]['id']."01");
                                                     for($j = 0; $j < count($submenu_web); $j++){
@@ -389,10 +453,6 @@
 
                         </div>
                     </div>
-
-
-
-
 
                 </div>
             </div>
@@ -745,5 +805,17 @@
                     if (!isConfirm) return;
                     window.location.href = "<?php echo(base_url())?>admin/hapus-menu-admin/"+id+"/"+urutan+"/"+id_parent+"/"+type_menu;
                 });
+            }
+
+
+            function barier(title){
+                swal({
+                    title: "Tidak Bisa Delete Menu \n\""+title+"\"",
+                    text: "Tidak bisa delete menu \""+title+"\" karena masih memiliki submenu. Harap hapus submenu terlebih dahulu.",
+                    type: "warning",
+                    showCancelButton: true,
+                    cancelButtonText: "OKE",
+                    closeOnConfirm: false
+                });     
             }
         </script>

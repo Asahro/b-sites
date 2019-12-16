@@ -5,7 +5,6 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="description" content="Colo Shop Template">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
     	<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>gambar/themplate/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>nassets/styles/bootstrap4/bootstrap.min.css">
 		<link href="<?php echo base_url() ?>nassets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

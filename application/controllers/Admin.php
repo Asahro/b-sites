@@ -4,6 +4,16 @@ date_default_timezone_set("Asia/Jakarta");
 
 class Admin extends CI_Controller {
 
+
+	public function __construct(){
+	    parent::__construct();
+	    
+	  //   if(!$this->session->set_userdata('id', $login[0]['id'])){
+			// redirect("admin/login");
+	  //   }
+
+	}
+
 	//--------------------------------------------------------- login
 	public function index() {
 		if($this->session->userdata('login')){
@@ -171,13 +181,6 @@ class Admin extends CI_Controller {
 		$this->session->set_userdata($type_menu, "in");
         redirect('admin/developer/menu');
 	}
-
-
-
-
-
-
-
 
 
 

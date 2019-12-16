@@ -54,6 +54,13 @@
     <script src="<?php echo base_url() ?>dassets/js/tab.js"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script src="<?php echo base_url() ?>dassets/js/tree-line/jstree.min.js"></script>
+    <script src="<?php echo base_url() ?>dassets/js/tree-line/jstree.active.js"></script>
+    <!-- code editor JS
+        ============================================ -->
+    <script src="<?php echo base_url() ?>dassets/js/code-editor/codemirror.js"></script>
+    <script src="<?php echo base_url() ?>dassets/js/code-editor/code-editor.js"></script>
+    <script src="<?php echo base_url() ?>dassets/js/code-editor/code-editor-active.js"></script>
 
     <script src="<?php echo base_url() ?>dassets/js/plugins.js"></script>
     <script src="<?php echo base_url() ?>dassets/js/main.js"></script>

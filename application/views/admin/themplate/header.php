@@ -36,7 +36,12 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/editor/x-editor-style.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/data-table/bootstrap-table.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/modals.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/notifications/Lobibox.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/notifications/Lobibox.min.css"> 
+    <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/tree-viewer/tree-viewer.css">
+    <!-- codemirror CSS
+        ============================================ -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/code-editor/codemirror.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/code-editor/ambiance.css">
     
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>dassets/css/summernote/summernote.css">
